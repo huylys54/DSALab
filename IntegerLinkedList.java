@@ -105,13 +105,11 @@ public class IntegerLinkedList extends MyLinkedList<Integer>{
         if(this.head == null || this.head.getNext() == null){
             return;
         }
-        Node<Integer> curr = this.head;
-        Node<Integer> prev = curr;
-        Node<Integer> next = null, tmp;
-        while(curr.getNext() != null){
-            next = curr.getNext();
-            while(next != null){
-
+        Node<Integer> next = null, tmp, end = null, curr, prev;
+        while(end != this.head.getNext()){
+            curr = prev = this.head;
+            while(curr.getNext() != end){
+                next = curr.getNext();
                 if(curr.getData() > next.getData()){
                     //swap next node
                     curr.setNext(next.getNext());
@@ -126,11 +124,10 @@ public class IntegerLinkedList extends MyLinkedList<Integer>{
                     curr = next;
                     next = tmp;
                 }
-                next = next.getNext();
+                prev = curr;
+                curr = curr.getNext();
             }
-            prev = curr;
-            curr = curr.getNext();
+            end = curr;
         }
-        
     }
 }

@@ -13,7 +13,7 @@ public class TestEx3{
         System.out.println(intList.max());
         intList.reverse();
         intList.print();
-        // intList.sort(); not working properly
-        // intList.print();
+        intList.sort();
+        intList.print();
     }
 }

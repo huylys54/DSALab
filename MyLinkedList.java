@@ -2,8 +2,8 @@ import java.util.NoSuchElementException;
 
 
 public class MyLinkedList<E> implements ListInterface<E>{
-    private Node<E> head;
-    private int numNode;
+    protected Node<E> head;
+    protected int numNode;
 
     public MyLinkedList(){
         head = null;
@@ -40,7 +40,7 @@ public class MyLinkedList<E> implements ListInterface<E>{
         numNode++;
     }
 
-    public E removeFirst(){
+    public E removeFirst() throws NoSuchElementException{
         if(head == null){
             throw new NoSuchElementException("Can't remove!\n");
         }
@@ -50,7 +50,7 @@ public class MyLinkedList<E> implements ListInterface<E>{
         return delData;
     }
 
-    public E removeAfter(Node<E> curr){
+    public E removeAfter(Node<E> curr) throws NoSuchElementException{
         if(curr == null){
             throw new NoSuchElementException("Can't remove!");
         }
@@ -63,7 +63,7 @@ public class MyLinkedList<E> implements ListInterface<E>{
         return del;
     }
 
-    public E removeLast(){
+    public E removeLast() throws NoSuchElementException{
         if(numNode == 0){
             throw new NoSuchElementException("Can't remove!");
         }
@@ -76,14 +76,18 @@ public class MyLinkedList<E> implements ListInterface<E>{
         }
         E del = current.getData();
         current.setNext(null);
+        this.numNode--;
         return del;
     }
 
-    public E removeCurr(Node<E> curr){
+    public E removeCurr(Node<E> curr) throws NoSuchElementException{
         if(head == null){
             throw new RuntimeException("Empty list!");
         }
 
+        if(curr.getData() == head.getData()){
+            removeFirst();
+        }
         Node<E> tmp = this.head;
         Node<E> prev = null;
         while(tmp != null && !(tmp.getData().equals(curr.getData()))){
@@ -96,8 +100,10 @@ public class MyLinkedList<E> implements ListInterface<E>{
         }
 
         prev.setNext(tmp.getNext());
-        
-        return tmp.getData();
+        E del = tmp.getData();
+        tmp = null;
+        this.numNode--;
+        return del;
     }
 
     public int size(){

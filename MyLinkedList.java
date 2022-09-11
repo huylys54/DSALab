@@ -74,7 +74,7 @@ public class MyLinkedList<E> implements ListInterface<E>{
         while(current.getNext().getNext() != null){
             current = current.getNext();
         }
-        E del = current.getData();
+        E del = current.getNext().getData();
         current.setNext(null);
         this.numNode--;
         return del;

@@ -106,7 +106,7 @@ public class IntegerLinkedList extends MyLinkedList<Integer>{
             return;
         }
         Node<Integer> next = null, tmp, end = null, curr, prev;
-        while(end != this.head.getNext()){
+        while(end != this.head.getNext()){ 
             curr = prev = this.head;
             while(curr.getNext() != end){
                 next = curr.getNext();

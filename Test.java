@@ -14,6 +14,8 @@ public class Test{
         cur = cur.getNext();
         list.removeAfter(cur);
         list.print();
-        
+        System.out.println(list.contain("d"));
+        System.out.println(list.size());
+        System.out.println(list.isEmpty());
     }
 }
